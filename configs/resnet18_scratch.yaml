@@ -1,0 +1,8 @@
+inherit: resnet50_scratch.yaml
+
+model:
+  architecture: resnet18
+  pretrained: false
+
+run:
+  name: resnet18_scratch

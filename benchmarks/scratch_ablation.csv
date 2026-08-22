@@ -1,0 +1,5 @@
+architecture,augmentation,top1,top5,macro_precision,macro_recall,macro_f1
+ResNet-18,on,33.66,58.78,33.14,33.66,32.35
+ResNet-50,on,33.88,59.02,33.61,33.88,32.81
+ResNet-50,off,23.38,45.78,25.23,23.38,23.16
+

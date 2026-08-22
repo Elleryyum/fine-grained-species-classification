@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fine-grained-species-classification"
+version = "0.1.0"
+description = "Reproducible ResNet experiments for fine-grained species classification"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+dependencies = [
+  "matplotlib>=3.8,<4",
+  "numpy>=1.26,<3",
+  "Pillow>=10,<13",
+  "PyYAML>=6,<7",
+  "scikit-learn>=1.4,<2",
+  "torch>=2.2,<3",
+  "torchvision>=0.17,<1",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8,<10",
+  "ruff>=0.6,<1",
+]
+
+[project.scripts]
+species-prepare = "species_classifier.cli.prepare:main"
+species-train = "species_classifier.cli.train:main"
+species-evaluate = "species_classifier.cli.evaluate:main"
+species-predict = "species_classifier.cli.predict:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+

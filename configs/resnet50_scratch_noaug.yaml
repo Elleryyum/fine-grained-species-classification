@@ -1,0 +1,7 @@
+inherit: resnet50_scratch.yaml
+
+training:
+  augmentation: false
+
+run:
+  name: resnet50_scratch_noaug
