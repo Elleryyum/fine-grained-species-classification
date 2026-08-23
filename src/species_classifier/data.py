@@ -6,12 +6,12 @@ import csv
 import json
 import random
 from collections import Counter, defaultdict
+from collections.abc import Iterable
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any
 
 from PIL import Image
 from torch.utils.data import Dataset
-
 
 CLASS_FIELDS = (
     "label_index",
@@ -231,4 +231,3 @@ class ManifestDataset(Dataset):
         if self.transform is not None:
             image = self.transform(image)
         return image, int(row["label_index"])
-

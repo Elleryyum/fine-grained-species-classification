@@ -173,8 +173,7 @@ def _write_confused_pairs(path: Path, matrix: np.ndarray, names: list[str], top:
             fieldnames=("true_label", "true_name", "predicted_label", "predicted_name", "rate"),
         )
         writer.writeheader()
-        written = 0
-        for true_label, predicted_label in ranked:
+        for written, (true_label, predicted_label) in enumerate(ranked):
             rate = float(counts[true_label, predicted_label])
             if rate <= 0 or written >= top:
                 break
@@ -187,7 +186,6 @@ def _write_confused_pairs(path: Path, matrix: np.ndarray, names: list[str], top:
                     "rate": f"{rate:.6f}",
                 }
             )
-            written += 1
 
 
 def export_evaluation(
@@ -245,4 +243,3 @@ def print_metrics(metrics: dict[str, float]) -> None:
     print("------------")
     for name, value in metrics.items():
         print(f"{name:<22} {value:.4f}")
-

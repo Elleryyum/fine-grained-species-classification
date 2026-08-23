@@ -6,8 +6,8 @@ import argparse
 import time
 from pathlib import Path
 
-from PIL import Image
 import torch
+from PIL import Image
 
 from species_classifier.config import load_config
 from species_classifier.runtime import load_checkpoint_model, select_device
@@ -55,4 +55,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

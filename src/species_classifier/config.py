@@ -34,7 +34,7 @@ def load_config(path: str | Path) -> dict[str, Any]:
     with config_path.open(encoding="utf-8") as stream:
         current = yaml.safe_load(stream) or {}
     if not isinstance(current, dict):
-        raise ValueError(f"configuration root must be a mapping: {config_path}")
+        raise TypeError(f"configuration root must be a mapping: {config_path}")
 
     parent_value = current.pop("inherit", None)
     config = current
@@ -79,7 +79,7 @@ def validate_config(config: dict[str, Any]) -> None:
     if model.get("architecture") not in {"resnet18", "resnet50"}:
         raise ValueError("model.architecture must be resnet18 or resnet50")
     if not isinstance(model.get("pretrained"), bool):
-        raise ValueError("model.pretrained must be true or false")
+        raise TypeError("model.pretrained must be true or false")
 
     training = config["training"]
     for field in ("epochs", "batch_size", "learning_rate", "weight_decay"):
@@ -94,4 +94,3 @@ def save_resolved_config(config: dict[str, Any], path: str | Path) -> None:
     destination.parent.mkdir(parents=True, exist_ok=True)
     with destination.open("w", encoding="utf-8") as stream:
         yaml.safe_dump(config, stream, sort_keys=False)
-
